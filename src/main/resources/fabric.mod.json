@@ -5,16 +5,11 @@
   "name": "Minehoster",
   "description": "Manage Minecraft servers from inside Minecraft.",
   "authors": ["ViperXC132"],
-  "contact": {
-    "sources": "https://github.com/ViperXC132/Minehoster-Mod"
-  },
+  "contact": { "sources": "https://github.com/ViperXC132/Minehoster-Mod" },
   "license": "MIT",
   "environment": "client",
-  "entrypoints": {
-    "client": [
-      "dev.minehoster.MinehosterClient"
-    ]
-  },
+  "entrypoints": { "client": ["dev.minehoster.MinehosterClient"] },
+  "mixins": ["minehoster.mixins.json"],
   "depends": {
     "fabricloader": ">=0.19.3",
     "minecraft": "1.21.1",
