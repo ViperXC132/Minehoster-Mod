@@ -17,12 +17,9 @@ repositories {
 }
 
 loom {
-    splitEnvironmentSourceSets()
-
     mods {
         minehoster {
             sourceSet sourceSets.main
-            sourceSet sourceSets.client
         }
     }
 }
@@ -35,7 +32,6 @@ dependencies {
 }
 
 processResources {
-    inputs.property 'version', project.version
     filesMatching('fabric.mod.json') {
         expand version: project.version
     }
@@ -64,8 +60,5 @@ publishing {
         create('mavenJava', MavenPublication) {
             from components.java
         }
-    }
-    repositories {
-        // Configure a publishing repository here if needed.
     }
 }
