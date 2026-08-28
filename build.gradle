@@ -14,21 +14,19 @@ repositories {
     mavenCentral()
 }
 
-loom {
-    splitEnvironmentSourceSets()
-    mods {
-        minehoster {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
-        }
-    }
-}
-
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
+
+// This mod is client-only, so compile the client implementation with the normal
+// Minecraft named classpath while keeping the sources in a clearly named folder.
+sourceSets {
+    main {
+        java.srcDir 'src/client/java'
+    }
 }
 
 processResources { filesMatching('fabric.mod.json') { expand version: project.version } }
