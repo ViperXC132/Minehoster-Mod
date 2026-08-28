@@ -7,9 +7,7 @@ group = project.maven_group
 description = project.mod_description
 version = project.mod_version
 
-base {
-    archivesName = project.archives_base_name
-}
+base { archivesName = project.archives_base_name }
 
 repositories {
     maven { url = 'https://maven.fabricmc.net/' }
@@ -17,9 +15,11 @@ repositories {
 }
 
 loom {
+    splitEnvironmentSourceSets()
     mods {
         minehoster {
             sourceSet sourceSets.main
+            sourceSet sourceSets.client
         }
     }
 }
@@ -31,16 +31,10 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
-processResources {
-    filesMatching('fabric.mod.json') {
-        expand version: project.version
-    }
-}
+processResources { filesMatching('fabric.mod.json') { expand version: project.version } }
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
     withSourcesJar()
 }
 
@@ -50,15 +44,9 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar {
-    from('LICENSE') {
-        rename { "${it}_${project.archives_base_name}" }
-    }
+    from('LICENSE') { rename { "${it}_${project.archives_base_name}" } }
 }
 
 publishing {
-    publications {
-        create('mavenJava', MavenPublication) {
-            from components.java
-        }
-    }
+    publications { create('mavenJava', MavenPublication) { from components.java } }
 }
