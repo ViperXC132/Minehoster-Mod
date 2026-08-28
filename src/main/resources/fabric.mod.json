@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "minehoster",
+  "version": "1.0.0",
+  "name": "Minehoster",
+  "description": "Manage Minecraft servers from inside Minecraft.",
+  "authors": ["ViperXC132"],
+  "contact": {
+    "sources": "https://github.com/ViperXC132/Minehoster-Mod"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.minehoster.MinehosterClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "1.21.1",
+    "java": ">=21",
+    "fabric-api": ">=0.116.7+1.21.1"
+  }
+}
